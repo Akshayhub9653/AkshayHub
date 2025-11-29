@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="AkshayHub - AI Prompts & Tools">
+    <meta name="description" content="AkshayHub - Best AI Prompts & Tools">
     <title>Akshay Hub | Official</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -16,10 +16,6 @@
         #detailPage.active { transform: translateX(0); }
         #sideMenu { transition: transform 0.3s ease-in-out; transform: translateX(-100%); }
         #sideMenu.open { transform: translateX(0); }
-        /* Chat Bot Animation */
-        #chatBox { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); transform: scale(0); transform-origin: bottom right; opacity: 0; }
-        #chatBox.open { transform: scale(1); opacity: 1; }
-        
         /* Heart Animation */
         .heart-anim { animation: heartPop 0.3s ease-in-out; color: red !important; }
         @keyframes heartPop { 0% { transform: scale(1); } 50% { transform: scale(1.3); } 100% { transform: scale(1); } }
@@ -34,9 +30,12 @@
                 <div class="text-xl font-bold tracking-tight">Akshay<span class="text-blue-600">Hub</span></div>
             </div>
             
-            <button id="followBtn" onclick="toggleFollow()" class="bg-blue-600 text-white text-xs font-bold px-4 py-2 rounded-full shadow hover:bg-blue-700 transition flex items-center gap-1">
-                <i class="fa-solid fa-plus"></i> <span id="followText">Follow</span> <span id="followCount" class="bg-blue-800 px-1.5 py-0.5 rounded ml-1">1.2K</span>
-            </button>
+            <div class="flex items-center gap-3">
+                <a href="https://www.youtube.com/@OfficialMastimajak" target="_blank" class="text-red-600 text-2xl hover:scale-110 transition"><i class="fa-brands fa-youtube"></i></a>
+                <button id="followBtn" onclick="toggleFollow()" class="bg-blue-600 text-white text-xs font-bold px-4 py-2 rounded-full shadow hover:bg-blue-700 transition flex items-center gap-1">
+                    <i class="fa-solid fa-plus"></i> <span id="followText">Follow</span> <span id="followCount" class="bg-blue-800 px-1.5 py-0.5 rounded ml-1">1.2K</span>
+                </button>
+            </div>
         </nav>
 
         <div id="sideMenu" class="fixed inset-y-0 left-0 w-72 bg-white z-50 shadow-2xl flex flex-col border-r border-gray-200">
@@ -47,12 +46,11 @@
             <div class="p-4 space-y-2">
                 <button onclick="filterType('all')" class="w-full text-left px-4 py-3 hover:bg-blue-50 rounded font-medium">Home</button>
                 <button onclick="filterType('Collection')" class="w-full text-left px-4 py-3 hover:bg-blue-50 rounded font-medium">Prompt Collections</button>
-                <button onclick="filterType('Tool')" class="w-full text-left px-4 py-3 hover:bg-blue-50 rounded font-medium">Tools</button>
+                <button onclick="filterType('Tool')" class="w-full text-left px-4 py-3 hover:bg-blue-50 rounded font-medium">Termux Tools</button>
                 <div class="mt-4 pt-4 border-t border-gray-100">
                     <p class="text-xs text-gray-400 mb-2 px-4">Socials</p>
                     <div class="flex gap-4 px-4">
                         <a href="https://www.instagram.com/akshay_creations_ai" target="_blank" class="text-pink-600 text-2xl"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="https://www.youtube.com/@OfficialMastimajak" target="_blank" class="text-red-600 text-2xl"><i class="fa-brands fa-youtube"></i></a>
                         <a href="https://t.me/YourTelegramLink" target="_blank" class="text-blue-500 text-2xl"><i class="fa-brands fa-telegram"></i></a>
                     </div>
                 </div>
@@ -67,7 +65,7 @@
                     <i class="fa-solid fa-search absolute left-5 top-4 text-gray-400"></i>
                 </div>
             </div>
-            <div id="gridTitle" class="font-bold text-xl text-gray-800 mb-4 border-l-4 border-blue-600 pl-3">Top Picks</div>
+            <div id="gridTitle" class="font-bold text-xl text-gray-800 mb-4 border-l-4 border-blue-600 pl-3">Top 3 Picks</div>
             <div id="contentGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
             <div id="noResults" class="hidden text-center mt-10 text-gray-400"><i class="fa-regular fa-folder-open text-3xl mb-2"></i><br>No results found!</div>
         </main>
@@ -78,10 +76,9 @@
             <button onclick="closeDetail()" class="text-gray-600 text-2xl"><i class="fa-solid fa-arrow-left"></i></button>
             <h2 id="detailTitle" class="text-lg font-bold truncate">Title</h2>
         </div>
-        
         <div class="max-w-3xl mx-auto p-5 pb-24">
             <div class="mb-6 bg-blue-50 p-4 rounded-xl border border-blue-100">
-                <h3 class="font-bold text-blue-800 mb-1">Description</h3>
+                <h3 class="font-bold text-blue-800 mb-1">About this Pack</h3>
                 <p id="detailDesc" class="text-sm text-blue-600"></p>
             </div>
             <div id="variationsList" class="space-y-8"></div>
@@ -102,7 +99,7 @@
             <button onclick="toggleChat()"><i class="fa-solid fa-times"></i></button>
         </div>
         <div id="chatMessages" class="flex-1 p-4 overflow-y-auto space-y-3 bg-gray-50">
-            <div class="flex gap-2"><div class="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white text-xs shrink-0"><i class="fa-solid fa-robot"></i></div><div class="bg-white p-3 rounded-r-xl rounded-bl-xl shadow-sm text-sm border border-gray-200">Hi! Ask me for prompts or tools.</div></div>
+            <div class="flex gap-2"><div class="w-8 h-8 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white text-xs shrink-0"><i class="fa-solid fa-robot"></i></div><div class="bg-white p-3 rounded-r-xl rounded-bl-xl shadow-sm text-sm border border-gray-200">Hi! I can find prompts for you.</div></div>
         </div>
         <div class="p-3 bg-white border-t border-gray-100 flex gap-2 items-center shrink-0">
             <input type="text" id="chatInput" placeholder="Ask here..." class="flex-1 bg-gray-100 rounded-full px-4 py-2.5 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500">
@@ -114,89 +111,82 @@
 
     <script>
         const database = [
-            // 1. NEW FAN ART PROMPT (Akshay.jpg)
+            // 1. EMOTIONAL ART (2025 TREND) - NEW PROMPT 1
             {
-                id: 1, type: 'Collection', title: 'Fan Art Portrait (13 Yr)', coverImage: 'Akshay.jpg', 
-                desc: 'A vertical fan-art style portrait featuring two versions of the same boy. Emotional and Artistic.',
+                id: 1, type: 'Collection', title: 'Emotional Art (2025)', coverImage: 'Akshay1.jpg', 
+                desc: 'Sad and emotional concepts. Burning heart, 2025 themes, and deep meaning.',
                 variations: [
+                    { title: 'Burning Heart 2025 (13 Yr)', image: 'Akshay1.jpg', prompt: 'A full-body, hyperrealistic and cinematic portrait of a 13 year old boy standing alone on a deserted asphalt road at deep night (late twilight). He is wearing a dark jacket and trousers white shoes and looking intently downward at the ground. He holds a single dark red rose loosely in his right hand. Directly in front of his feet, a large, perfectly defined heart outline is burning fiercely on the road, constructed purely of vibrant, intense orange and yellow flames. Inside the heart "2025" is written in fire. The rose in his hand is also catching fire with love smoke coming out. The boy\'s face is towards the camera with a sad pose as if he burned 2025 with the flower. A broken glass beer bottle is lying next to the burning heart. The man is dramatically lit by the fire.' },
                     { title: 'Fan-Art Portrait (Red/Black)', image: 'Akshay.jpg', prompt: '"A vertical fan-art style portrait in a 16:9 tall orientation, featuring two versions of the same 13 year old boy from the uploaded photo. His face remains 100% real and unedited. One version of him is in a relaxed, seated pose, and the other is standing and looking upward, showing emotional variation. The background is a mix of black, white, and red hues, with glowing highlights, faint smoke or mist, and a soft artistic blur for depth."' }
                 ]
             },
-            // 2. CINEMATIC MEN
+            // 2. COOL KIDS PACK - ADDED NEW BIKE PROMPT HERE
             {
-                id: 2, type: 'Collection', title: 'Cinematic Men Pack', coverImage: 'boy.jpg', 
+                id: 2, type: 'Collection', title: 'Cool Kids Pack', coverImage: 'Akshay2.jpg', 
+                desc: 'Stylish prompts for boys (11-13 years). Bikers, Drone users, and Models.',
+                variations: [
+                    { title: '11 Year Old Biker (GT 650)', image: 'Akshay2.jpg', prompt: 'Hyper-realistic cinematic full-body portrait of the same 11 year old (face unchanged) sitting casually on a shiny black custom modified continental gt 650, duball Silancer -style motorcycle with chrome details, wide tires, and visible rear plate. He wears an all-black outfit-open-collar shirt, slim trousers, polished shoes-with a thin gold chain on his chest. Clean-shaven, stylish hair, dark sunglasses. Relaxed pose, one leg crossed, 100% face matching' },
+                    { title: '13 Year Old (Drone)', image: 'https://placehold.co/600x400/pink/FFF?text=Drone+Boy', prompt: '13 year old boy wearing a pink check-printed shirt and white cargo pants. On his wrist, there is an Apple smartwatch with a white strap. He stands holding a drone controller in his hands and is looking directly at the camera. A white drone is flying in the background to his left. Keep my face 100% same as in the reference image.' },
+                    { title: '11 Year Old (Blazer)', image: 'https://placehold.co/600x400/333/FFF?text=Blazer+Boy', prompt: 'Use reference photo to create a A stylish handsome 11-year-old boy with a well-groomed dark hair, wearing sunglasses, a black long-sleeved shirt, and brown trousers. He is holding a brown blazer over his arm. He stands outdoors next to a modern building with a glass facade, illuminated by sunlight creating shadows. The overall aesthetic is sharp and fashion-conscious. "face keep same' }
+                ]
+            },
+            // 3. ROMANTIC COUPLES - RESTORED ALL 5
+            {
+                id: 3, type: 'Collection', title: 'Romantic Couples Pack', coverImage: 'https://placehold.co/600x400/e11d48/FFF?text=Romantic+Couples', 
+                desc: 'Best viral couple prompts. Peony fields, indoor romance, and traditional vibes.',
+                variations: [
+                    { title: 'Peony Field Hug', image: 'https://placehold.co/600x400/e11d48/FFF?text=Peony+Field', prompt: 'Full-body young man, stylish hair, maroon/white gradient shirt (maroon/white hearts), white tee, black pants. Rolex on right wrist. Gazing slightly, soft smile, clicking DSLR, nice hand gesture. Girlfriend hugs from back in lush pink/white peony field. Long dark hair, white ribbon bow. Sleeveless, square-neck maroon dress (white hearts), three tiers white lace trim on skirt. Smiling, looking at DSLR. Softly blurred background emphasizes vibrant flowers.' },
+                    { title: 'Intimate Bed Pose', image: 'https://placehold.co/600x400/purple/FFF?text=Intimate+Pose', prompt: 'A woman sitting on a bed indoors, draped in a flowing white crop top, gentle pose with one hand touching back. Long dark hair, cool natural light, soft cinematic background, traditional bangles, serene and intimate mood. And a boy is holding a girl by the waist and kissing her on the neck. Side in boy change T-shirt' },
+                    { title: 'Indian Elegance (Lilac)', image: 'https://placehold.co/600x400/orange/FFF?text=Indian+Elegance', prompt: 'A hyper-realistic chest-up portrait of the young Indian Man and woman from the uploaded image very close capture, wearing a pastel lilac sleeveless crop choli with layered sheer panels, high heavy ponytail, her bust fully and tightly enhanced to a natural, full shape, small black bindi, dreamy confident gaze, cinematic soft sunlight filtering through sheer curtains, minimal blurred indoor background — soft modern Indian elegance And a boy is holding the girl\'s waist from behind and kissing her on the neck. Don\'t change the face change T-shirt' },
+                    { title: 'Sofa Kiss (Mixed Race)', image: 'https://placehold.co/600x400/blue/FFF?text=Sofa+Kiss', prompt: 'A tender moment captured indoors shows a mixed-race couple on a sofa, leaning in for a kiss. The man, with dark hair and a subtle beard, wears a white t-shirt and blue jeans. He is looking down slightly with his eyes closed. The woman, with long, wavy black hair, wears a white oversized shirt draped off one shoulder, revealing a beige camisole, and light blue jeans. Her eyes are also closed as she leans into the kiss. Both are seated on a light grey fabric sofa. The background is softly Don’t change my face' },
+                    { title: 'Garden Pigtails', image: 'https://placehold.co/600x400/green/FFF?text=Garden+Couple', prompt: 'A young couples with dark hair tied in two pigtails together in romantic intimate very close stands outdoors, together in romantic intimate very close looking with her eyes opened, as if enjoying the sun. Her very large breasts. She wears a sleeveless off-elegant kurti with one side slightly slipping, revealing a red bra strap and black bra strap and shows surrounded by various potted plants and flowers, patio, surrounded by various potted plants. Girl patli boy Don’t change my face change T-shirt' }
+                ]
+            },
+            // 4. CINEMATIC MEN (RESTORED)
+            {
+                id: 4, type: 'Collection', title: 'Cinematic Men Pack', coverImage: 'boy.jpg', 
                 desc: 'High-quality fan-art, biker style, and emotional portraits.',
                 variations: [
                     { title: 'Biker Style (GT 650)', image: 'https://placehold.co/600x400/000/FFF?text=Bike+Pose', prompt: 'Hyper-realistic cinematic full-body portrait of the same young man (face unchanged) sitting casually on a shiny black custom modified continental gt 650, duball Silancer -style motorcycle with chrome details, wide tires, and visible rear plate. He wears an all-black outfit-open-collar shirt, slim trousers, polished shoes-with a thin gold chain on his chest. Clean-shaven, stylish hair, dark sunglasses. Relaxed pose, one leg crossed, 100% face matching' },
                     { title: 'Ghost & Rose (Emotional)', image: 'https://placehold.co/600x400/333/FFF?text=Ghost+Rose', prompt: 'A slender man (same face as uploaded image) stands on a foggy, dimly lit street at night, offering a single red rose to a glowing female spirit. He wears a white blazer, black pants, and white sneakers, looking gently toward her. The spirit is translucent, with long flowing hair and a soft white glow, blending into the mist. Faint streetlights and reflections on the wet cobblestones create a dreamy, emotional, cinematic atmosphere.' }
                 ]
             },
-            // 3. ROMANTIC COUPLES
-            {
-                id: 3, type: 'Collection', title: 'Romantic Couples Pack', coverImage: 'https://placehold.co/600x400/e11d48/FFF?text=Romantic+Couples', 
-                desc: 'Best viral couple prompts. Peony fields, indoor romance, and traditional vibes.',
-                variations: [
-                    { title: 'Peony Field Hug', image: 'https://placehold.co/600x400/e11d48/FFF?text=Peony+Field', prompt: 'Full-body young man, stylish hair, maroon/white gradient shirt (maroon/white hearts), white tee, black pants. Rolex on right wrist. Gazing slightly, soft smile, clicking DSLR, nice hand gesture. Girlfriend hugs from back in lush pink/white peony field. Long dark hair, white ribbon bow. Sleeveless, square-neck maroon dress (white hearts), three tiers white lace trim on skirt. Smiling, looking at DSLR. Softly blurred background emphasizes vibrant flowers.' }
+            // 5. TOOL: PYTHON SETUP (NEW)
+            { 
+                id: 5, type: 'Tool', title: 'Python Setup in Termux', coverImage: 'https://placehold.co/600x400/FFD700/000?text=Python+Setup', 
+                desc: 'Complete guide to install and run Python in Termux. Essential for beginners.',
+                steps: [
+                    'pkg update && pkg upgrade -y',
+                    'pkg install python -y',
+                    'python --version (Check version)',
+                    'nano test.py (Create file)',
+                    'print("Hello World") (Write code inside)',
+                    'CTRL+X, Y, Enter (Save)',
+                    'python test.py (Run Code)'
                 ]
-            }
+            },
+            // 6. TOOL: NEWS
+            { id: 6, type: 'Tool', title: 'Termux News Tool', coverImage: 'https://placehold.co/600x400/000000/FFF?text=News+Tool', desc: 'Read world news in Termux.', steps: ['pkg install python', 'git clone https://github.com/akshay/news', 'python main.py'] },
+            // 7. TOOL: KINEMASTER
+            { id: 7, type: 'App', title: 'KineMaster Pro', coverImage: 'https://placehold.co/600x400/e11d48/FFF?text=KineMaster', desc: 'Video editor mod.', link: 'https://google.com' }
         ];
 
         window.onload = () => { renderGrid(database.slice(0, 3)); loadFollow(); };
 
-        // FOLLOW SYSTEM (Simulated)
-        function loadFollow() {
-            if(localStorage.getItem('isFollowing') === 'true') {
-                document.getElementById('followBtn').classList.replace('bg-blue-600', 'bg-gray-800');
-                document.getElementById('followText').innerText = "Following";
-            }
-        }
-        function toggleFollow() {
-            const btn = document.getElementById('followBtn');
-            const txt = document.getElementById('followText');
-            if(txt.innerText === "Follow") {
-                txt.innerText = "Following";
-                btn.classList.replace('bg-blue-600', 'bg-gray-800');
-                localStorage.setItem('isFollowing', 'true');
-            } else {
-                txt.innerText = "Follow";
-                btn.classList.replace('bg-gray-800', 'bg-blue-600');
-                localStorage.setItem('isFollowing', 'false');
-            }
-        }
+        // FOLLOW SYSTEM
+        function loadFollow() { if(localStorage.getItem('isFollowing') === 'true') { document.getElementById('followBtn').classList.replace('bg-blue-600', 'bg-gray-800'); document.getElementById('followText').innerText = "Following"; } }
+        function toggleFollow() { const btn = document.getElementById('followBtn'); const txt = document.getElementById('followText'); if(txt.innerText === "Follow") { txt.innerText = "Following"; btn.classList.replace('bg-blue-600', 'bg-gray-800'); localStorage.setItem('isFollowing', 'true'); } else { txt.innerText = "Follow"; btn.classList.replace('bg-gray-800', 'bg-blue-600'); localStorage.setItem('isFollowing', 'false'); } }
 
-        // SOCIAL INTERACTION (Like, Comment, Share)
-        function toggleLike(btn) {
-            btn.classList.toggle('heart-anim');
-            const icon = btn.querySelector('i');
-            if(btn.classList.contains('heart-anim')) { icon.classList.replace('fa-regular', 'fa-solid'); }
-            else { icon.classList.replace('fa-solid', 'fa-regular'); }
-        }
-        function shareContent(title) {
-            if (navigator.share) {
-                navigator.share({ title: 'AkshayHub Prompt', text: 'Check out this prompt: ' + title, url: window.location.href });
-            } else { alert('Link copied to clipboard!'); }
-        }
+        // SOCIAL
+        function toggleLike(btn) { btn.classList.toggle('heart-anim'); const icon = btn.querySelector('i'); if(btn.classList.contains('heart-anim')) { icon.classList.replace('fa-regular', 'fa-solid'); } else { icon.classList.replace('fa-solid', 'fa-regular'); } }
+        function shareContent(title) { if (navigator.share) { navigator.share({ title: 'AkshayHub Prompt', text: 'Check out this prompt: ' + title, url: window.location.href }); } else { alert('Link copied to clipboard!'); } }
 
         function renderGrid(data) {
             const grid = document.getElementById('contentGrid'); grid.innerHTML = '';
             if(data.length===0) document.getElementById('noResults').classList.remove('hidden'); else document.getElementById('noResults').classList.add('hidden');
             data.forEach(item => {
                 let badge = item.type==='Collection'?'bg-purple-100 text-purple-800':(item.type==='Tool'?'bg-green-100 text-green-800':'bg-blue-100 text-blue-800');
-                grid.innerHTML += `
-                <div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-lg transition cursor-pointer group">
-                    <div class="relative h-48 overflow-hidden" onclick="openDetail(${item.id})">
-                        <img src="${item.coverImage}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-                        <span class="absolute top-2 right-2 ${badge} text-xs font-bold px-2 py-1 rounded shadow">${item.type}</span>
-                    </div>
-                    <div class="p-4">
-                        <h3 class="font-bold text-lg text-gray-800" onclick="openDetail(${item.id})">${item.title}</h3>
-                        <div class="flex justify-between items-center mt-3 pt-3 border-t border-gray-100">
-                            <button onclick="toggleLike(this)" class="text-gray-400 hover:text-red-500 transition"><i class="fa-regular fa-heart"></i></button>
-                            <button onclick="openDetail(${item.id})" class="text-gray-400 hover:text-blue-500 transition"><i class="fa-regular fa-comment"></i></button>
-                            <button onclick="shareContent('${item.title}')" class="text-gray-400 hover:text-green-500 transition"><i class="fa-regular fa-paper-plane"></i></button>
-                        </div>
-                    </div>
-                </div>`;
+                grid.innerHTML += `<div class="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-lg transition cursor-pointer group"><div class="relative h-48 overflow-hidden" onclick="openDetail(${item.id})"><img src="${item.coverImage}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500"><span class="absolute top-2 right-2 ${badge} text-xs font-bold px-2 py-1 rounded shadow">${item.type}</span></div><div class="p-4"><h3 class="font-bold text-lg text-gray-800" onclick="openDetail(${item.id})">${item.title}</h3><div class="flex justify-between items-center mt-3 pt-3 border-t border-gray-100"><button onclick="toggleLike(this)" class="text-gray-400 hover:text-red-500 transition"><i class="fa-regular fa-heart"></i></button><button onclick="openDetail(${item.id})" class="text-gray-400 hover:text-blue-500 transition"><i class="fa-regular fa-comment"></i></button><button onclick="shareContent('${item.title}')" class="text-gray-400 hover:text-green-500 transition"><i class="fa-regular fa-paper-plane"></i></button></div></div></div>`;
             });
         }
 
@@ -209,8 +199,15 @@
 
             if (item.variations) {
                 item.variations.forEach((v, index) => {
-                    varList.innerHTML += `<div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden mb-4"><div class="p-3 border-b border-gray-100 bg-gray-50 flex justify-between items-center"><h4 class="font-bold text-gray-800">${v.title}</h4></div><img src="${v.image}" class="w-full h-56 object-cover"><div class="p-4"><div class="bg-gray-100 p-3 rounded-lg border border-gray-300 font-mono text-sm text-gray-600 h-24 overflow-y-auto mb-3">${v.prompt}</div><div class="flex gap-2"><button onclick="copyTo('${v.prompt.replace(/'/g, "\\'")}')" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2.5 rounded-lg font-bold shadow transition flex justify-center items-center gap-2"><i class="fa-regular fa-copy"></i> Copy</button><button onclick="shareContent('${v.title}')" class="bg-gray-100 text-gray-600 px-4 rounded-lg border hover:bg-gray-200"><i class="fa-solid fa-share-nodes"></i></button></div></div></div>`;
+                    varList.innerHTML += `<div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden mb-4"><div class="p-3 border-b border-gray-100 bg-gray-50 flex justify-between items-center"><h4 class="font-bold text-gray-800">${v.title}</h4><span class="text-xs bg-gray-200 px-2 py-1 rounded text-gray-600">#${index+1}</span></div><img src="${v.image}" class="w-full h-56 object-cover"><div class="p-4"><div class="bg-gray-100 p-3 rounded-lg border border-gray-300 font-mono text-sm text-gray-600 h-24 overflow-y-auto mb-3">${v.prompt}</div><div class="flex gap-2"><button onclick="copyTo('${v.prompt.replace(/'/g, "\\'")}')" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white py-2.5 rounded-lg font-bold shadow transition flex justify-center items-center gap-2"><i class="fa-regular fa-copy"></i> Copy</button><button onclick="shareContent('${v.title}')" class="bg-gray-100 text-gray-600 px-4 rounded-lg border hover:bg-gray-200"><i class="fa-solid fa-share-nodes"></i></button></div></div></div>`;
                 });
+            } else if (item.steps) {
+                singleTool.classList.remove('hidden'); varList.innerHTML = `<img src="${item.coverImage}" class="w-full rounded-xl shadow-md">`;
+                const cmdBox = document.getElementById('toolCommands'); cmdBox.classList.remove('hidden'); cmdBox.innerHTML = '<h3 class="text-white font-bold mb-2">Commands:</h3>';
+                item.steps.forEach(s => cmdBox.innerHTML += `<div class="flex justify-between items-center border-b border-gray-700 py-2"><code class="text-green-400 text-sm flex-1 mr-2">$ ${s}</code><button onclick="copyTo('${s}')" class="text-gray-400 hover:text-white"><i class="fa-regular fa-copy"></i></button></div>`);
+            } else if (item.link) {
+                singleTool.classList.remove('hidden'); varList.innerHTML = `<img src="${item.coverImage}" class="w-full rounded-xl shadow-md">`;
+                document.getElementById('toolCommands').classList.add('hidden'); const dlBtn = document.getElementById('downloadBtn'); dlBtn.classList.remove('hidden'); dlBtn.href = item.link;
             }
             document.getElementById('detailPage').classList.add('active');
         }
@@ -218,8 +215,8 @@
         function closeDetail() { document.getElementById('detailPage').classList.remove('active'); }
         function toggleMenu() { document.getElementById('sideMenu').classList.toggle('open'); }
         function toggleChat() { const b=document.getElementById('chatBox'); if(b.style.display==='none'){b.style.display='flex';setTimeout(()=>b.classList.add('open'),10)}else{b.classList.remove('open');setTimeout(()=>b.style.display='none',300)} }
-        document.getElementById('searchInput').addEventListener('input', (e) => { const v=e.target.value.toLowerCase(); if(v===""){document.getElementById('gridTitle').innerText="Top Picks"; renderGrid(database.slice(0,3))} else {document.getElementById('gridTitle').innerText="Search Results"; renderGrid(database.filter(i=>i.title.toLowerCase().includes(v)));} });
-        function filterType(t) { toggleMenu(); document.getElementById('searchInput').value=""; if(t==='all'){renderGrid(database.slice(0,3))}else{renderGrid(database.filter(i=>i.type===t))} }
+        document.getElementById('searchInput').addEventListener('input', (e) => { const v=e.target.value.toLowerCase(); if(v===""){document.getElementById('gridTitle').innerText="Top 3 Picks"; renderGrid(database.slice(0,3))} else {document.getElementById('gridTitle').innerText="Search Results"; renderGrid(database.filter(i=>i.title.toLowerCase().includes(v) || i.desc.toLowerCase().includes(v)));} });
+        function filterType(t) { toggleMenu(); document.getElementById('searchInput').value=""; if(t==='all'){document.getElementById('gridTitle').innerText="Top 3 Picks"; renderGrid(database.slice(0,3))}else{document.getElementById('gridTitle').innerText=t+"s"; renderGrid(database.filter(i=>i.type===t))} }
         function sendMessage() { const input=document.getElementById('chatInput'); const msg=input.value.trim(); if(!msg)return; addMsg(msg,'user'); input.value=''; setTimeout(()=>{ addMsg("Found it! Opening...", 'bot'); },800); }
         function addMsg(t,s) { const d=document.createElement('div'); d.className=s==='user'?'flex gap-2 justify-end':'flex gap-2'; d.innerHTML=s==='user'?`<div class="bg-blue-600 text-white p-3 rounded-xl shadow-sm text-sm">${t}</div>`:`<div class="bg-gray-100 text-gray-800 p-3 rounded-xl text-sm border">${t}</div>`; document.getElementById('chatMessages').appendChild(d); }
         function copyTo(t) { navigator.clipboard.writeText(t); const ts=document.getElementById('toast'); ts.style.opacity="1"; setTimeout(()=>ts.style.opacity="0",2000); }
